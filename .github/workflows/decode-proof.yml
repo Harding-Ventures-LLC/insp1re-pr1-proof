@@ -2,7 +2,7 @@ name: Decode proof PNGs
 on:
   push:
     paths:
-      - "payloads/*.b64"
+      - "payloads/**"
 permissions:
   contents: write
 jobs:
@@ -10,17 +10,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode and commit PNGs
+      - name: Assemble, decode, commit PNGs
         run: |
           set -euo pipefail
-          for f in payloads/*.b64; do
-            name=$(basename "$f" .b64)
-            base64 -d "$f" > "$name"
-            python3 -c "import pathlib,sys; b=pathlib.Path(sys.argv[1]).read_bytes()[:8]; assert b==b'\\x89PNG\\r\\n\\x1a\\n'" "$name"
-          done
+          python3 << 'PY'
+          from pathlib import Path
+          import base64
+          payloads = Path('payloads')
+          groups = {}
+          for p in sorted(payloads.glob('*')):
+              if not p.is_file():
+                  continue
+              n = p.name
+              if n.endswith('.png.b64'):
+                  groups.setdefault(n, []).append(p)
+              elif '.png.b64.part' in n:
+                  stem = n.split('.part')[0]
+                  groups.setdefault(stem, []).append(p)
+          magic = b"\x89PNG\r\n\x1a\n"
+          wrote = []
+          for stem, files in groups.items():
+              if not stem.endswith('.png.b64'):
+                  continue
+              png_name = stem[:-4]
+              data = ''.join(f.read_text().strip() for f in files)
+              try:
+                  raw = base64.b64decode(data, validate=False)
+              except Exception as e:
+                  print('skip decode', png_name, e)
+                  continue
+              if raw[:8] != magic:
+                  print('skip incomplete', png_name, raw[:8])
+                  continue
+              Path(png_name).write_bytes(raw)
+              wrote.append(png_name)
+              print('decoded', png_name, len(raw))
+          if not wrote:
+              print('nothing complete yet')
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add *.png
+          shopt -s nullglob
+          git add *.png || true
           if git diff --cached --quiet; then
             echo "no png changes"
             exit 0
