@@ -27,7 +27,7 @@ jobs:
               elif '.png.b64.part' in n:
                   stem = n.split('.part')[0]
                   groups.setdefault(stem, []).append(p)
-          magic = b"\\x89PNG\\r\\n\\x1a\\n"
+          magic = bytes([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
           wrote = []
           for stem, files in groups.items():
               if not stem.endswith('.png.b64'):
