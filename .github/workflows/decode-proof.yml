@@ -27,12 +27,14 @@ jobs:
               elif '.png.b64.part' in n:
                   stem = n.split('.part')[0]
                   groups.setdefault(stem, []).append(p)
-          magic = b"\x89PNG\r\n\x1a\n"
+          magic = b"\\x89PNG\\r\\n\\x1a\\n"
           wrote = []
           for stem, files in groups.items():
               if not stem.endswith('.png.b64'):
                   continue
-              png_name = stem[:-4]
+              if not stem.startswith('perform-'):
+                  continue
+              png_name = stem[len('perform-'):-4]
               data = ''.join(f.read_text().strip() for f in files)
               try:
                   raw = base64.b64decode(data, validate=False)
@@ -42,19 +44,21 @@ jobs:
               if raw[:8] != magic:
                   print('skip incomplete', png_name, raw[:8])
                   continue
-              Path(png_name).write_bytes(raw)
-              wrote.append(png_name)
-              print('decoded', png_name, len(raw))
+              dest_dir = Path('2026-09-01/perform')
+              dest_dir.mkdir(parents=True, exist_ok=True)
+              out = dest_dir / png_name
+              out.write_bytes(raw)
+              wrote.append(str(out))
+              print('decoded', out, len(raw))
           if not wrote:
               print('nothing complete yet')
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          shopt -s nullglob
-          git add *.png || true
+          git add 2026-09-01/perform || true
           if git diff --cached --quiet; then
             echo "no png changes"
             exit 0
           fi
-          git commit -m "Add decoded Today proof PNGs"
+          git commit -m "Add decoded Perform proof PNGs"
           git push
