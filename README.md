@@ -20,30 +20,15 @@ Browse by day, then feature.
 
 ### Perform
 
-![Empty catalog (dark)](2026-09-01/perform/empty-dark.png)
+Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/2. Layout is `2026-09-01/perform/`. The decode workflow writes `payloads/perform-*.png.b64` into that folder. Until those binaries are in, the shots are attached on the PR.
 
-![Catalog (dark)](2026-09-01/perform/catalog-dark.png)
+Expected files:
 
-![Catalog (light)](2026-09-01/perform/catalog-light.png)
-
-![Stronger detail (dark)](2026-09-01/perform/detail-dark.png)
-
-![Stronger detail (light)](2026-09-01/perform/detail-light.png)
-
-![Active program (dark)](2026-09-01/perform/active-dark.png)
-
-![Active program, partial kept (light)](2026-09-01/perform/active-light.png)
-
-![Session player, not started (dark)](2026-09-01/perform/player-not-started-dark.png)
-
-![Session player, not started (light)](2026-09-01/perform/player-not-started-light.png)
-
-![Session player, in progress (dark)](2026-09-01/perform/player-in-progress-dark.png)
-
-![Session player, in progress (light)](2026-09-01/perform/player-in-progress-light.png)
-
-![Set logged + rest (dark)](2026-09-01/perform/player-set-logged-dark.png)
-
-![Today rest day from program (dark)](2026-09-01/perform/signed-in-today-dark.png)
-
-![Today rest day from program (light)](2026-09-01/perform/signed-in-today-light.png)
+- `empty-dark.png`
+- `catalog-dark.png` / `catalog-light.png`
+- `detail-dark.png` / `detail-light.png`
+- `active-dark.png` / `active-light.png`
+- `player-not-started-dark.png` / `player-not-started-light.png`
+- `player-in-progress-dark.png` / `player-in-progress-light.png`
+- `player-set-logged-dark.png`
+- `signed-in-today-dark.png` / `signed-in-today-light.png`
