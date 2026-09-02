@@ -26,6 +26,7 @@ jobs:
               ('perform-sources.json', 'perform-', Path('2026-09-01/perform')),
               ('mind-sources.json', 'mind-', Path('2026-09-02/mind')),
               ('journey-sources.json', 'journey-', Path('2026-09-02/journey')),
+              ('nutrition-sources.json', 'nutrition-', Path('2026-09-02/nutrition')),
           ]
 
           for src_name, prefix, dest_dir in SOURCES:
@@ -74,6 +75,7 @@ jobs:
               'perform-': Path('2026-09-01/perform'),
               'mind-': Path('2026-09-02/mind'),
               'journey-': Path('2026-09-02/journey'),
+              'nutrition-': Path('2026-09-02/nutrition'),
           }
           for stem, files in groups.items():
               if not stem.endswith('.png.b64'):
@@ -107,11 +109,11 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add payloads/perform-*.png.b64 payloads/mind-*.png.b64 payloads/journey-*.png.b64 || true
+          git add payloads/perform-*.png.b64 payloads/mind-*.png.b64 payloads/journey-*.png.b64 payloads/nutrition-*.png.b64 || true
           if ! git diff --cached --quiet; then
             git commit -m "Add proof payloads"
           fi
-          git add 2026-09-01/perform 2026-09-02/mind 2026-09-02/journey || true
+          git add 2026-09-01/perform 2026-09-02/mind 2026-09-02/journey 2026-09-02/nutrition || true
           if ! git diff --cached --quiet; then
             git commit -m "Add decoded proof PNGs"
           else
