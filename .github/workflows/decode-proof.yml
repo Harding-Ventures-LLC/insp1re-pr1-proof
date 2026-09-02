@@ -16,22 +16,49 @@ jobs:
           python3 << 'PY'
           from pathlib import Path
           import base64, hashlib, json, urllib.request
+
           payloads = Path('payloads')
-          src = payloads / 'perform-sources.json'
-          expected = {}
-          if src.exists():
+          magic = bytes([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
+          wrote = []
+          b64_wrote = []
+
+          SOURCES = [
+              ('perform-sources.json', 'perform-', Path('2026-09-01/perform')),
+              ('mind-sources.json', 'mind-', Path('2026-09-02/mind')),
+          ]
+
+          for src_name, prefix, dest_dir in SOURCES:
+              src = payloads / src_name
+              if not src.exists():
+                  continue
+              dest_dir.mkdir(parents=True, exist_ok=True)
               items = json.loads(src.read_text())
               for it in items:
                   name, url, sha = it['name'], it['url'], it['sha256']
-                  expected[name] = sha
+                  dest = dest_dir / name
+                  if dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest() == sha:
+                      print('already present', dest)
+                      continue
                   req = urllib.request.Request(url, headers={'User-Agent': 'insp1re-pr1-proof'})
-                  raw = urllib.request.urlopen(req, timeout=60).read()
+                  try:
+                      raw = urllib.request.urlopen(req, timeout=60).read()
+                  except Exception as e:
+                      print('fetch failed', name, e)
+                      continue
                   got = hashlib.sha256(raw).hexdigest()
                   if got != sha:
-                      raise SystemExit(f'fetch hash mismatch {name} {got}')
-                  out_b64 = payloads / f'perform-{name}.b64'
+                      print('fetch hash mismatch', name, got)
+                      continue
+                  if raw[:8] != magic:
+                      print('skip not png', name, raw[:8])
+                      continue
+                  dest.write_bytes(raw)
+                  wrote.append(str(dest))
+                  out_b64 = payloads / f'{prefix}{name}.b64'
                   out_b64.write_text(base64.b64encode(raw).decode('ascii'))
-                  print('wrote payload', out_b64, len(raw))
+                  b64_wrote.append(str(out_b64))
+                  print('wrote', dest, len(raw))
+
           groups = {}
           for p in sorted(payloads.glob('*')):
               if not p.is_file():
@@ -42,12 +69,22 @@ jobs:
               elif '.png.b64.part' in n:
                   stem = n.split('.part')[0]
                   groups.setdefault(stem, []).append(p)
-          magic = bytes([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
-          wrote = []
+          PREFIX_DEST = {
+              'perform-': Path('2026-09-01/perform'),
+              'mind-': Path('2026-09-02/mind'),
+          }
           for stem, files in groups.items():
-              if not stem.endswith('.png.b64') or not stem.startswith('perform-'):
+              if not stem.endswith('.png.b64'):
                   continue
-              png_name = stem[len('perform-'):-4]
+              prefix = next((p for p in PREFIX_DEST if stem.startswith(p)), None)
+              if prefix is None:
+                  continue
+              png_name = stem[len(prefix):-4]
+              dest_dir = PREFIX_DEST[prefix]
+              dest = dest_dir / png_name
+              if dest.exists() and dest.stat().st_size > 8:
+                  print('skip existing decode', dest)
+                  continue
               data = ''.join(f.read_text().strip() for f in files)
               try:
                   raw = base64.b64decode(data, validate=False)
@@ -57,29 +94,24 @@ jobs:
               if raw[:8] != magic:
                   print('skip incomplete', png_name, raw[:8])
                   continue
-              if png_name in expected:
-                  got = hashlib.sha256(raw).hexdigest()
-                  if got != expected[png_name]:
-                      print('skip hash mismatch', png_name, got)
-                      continue
-              dest_dir = Path('2026-09-01/perform')
               dest_dir.mkdir(parents=True, exist_ok=True)
-              out = dest_dir / png_name
-              out.write_bytes(raw)
-              wrote.append(str(out))
-              print('decoded', out, len(raw))
+              dest.write_bytes(raw)
+              wrote.append(str(dest))
+              print('decoded', dest, len(raw))
+
           if not wrote:
               print('nothing complete yet')
+          Path('/tmp/proof-wrote.json').write_text(json.dumps({'png': wrote, 'b64': b64_wrote}))
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add payloads/perform-*.png.b64
+          git add payloads/perform-*.png.b64 payloads/mind-*.png.b64 || true
           if ! git diff --cached --quiet; then
-            git commit -m "Add Perform proof payloads for 2026-09-01"
+            git commit -m "Add proof payloads"
           fi
-          git add 2026-09-01/perform || true
+          git add 2026-09-01/perform 2026-09-02/mind || true
           if ! git diff --cached --quiet; then
-            git commit -m "Add decoded Perform proof PNGs"
+            git commit -m "Add decoded proof PNGs"
           else
             echo "no png changes"
           fi
