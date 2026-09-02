@@ -69,3 +69,27 @@ Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re
 ![Today evening saved (dark)](2026-09-02/mind/today-evening-saved-dark.png)
 
 ![Today evening saved (light)](2026-09-02/mind/today-evening-saved-light.png)
+
+### Journey
+
+Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/4. Layout is `2026-09-02/journey/`.
+
+Pending Today habit follows the active habit. Completing it lights Today and the run on My Journey is derived from `day_intentions` (1 in a row). Light ground is the long-press on the Today greeting.
+
+![Today habit pending (dark)](2026-09-02/journey/today-habit-pending-dark.png)
+
+![Habit create (dark)](2026-09-02/journey/habit-create-dark.png)
+
+![Journey after creating a habit (dark)](2026-09-02/journey/journey-habit-created-dark.png)
+
+![Today habit done (dark)](2026-09-02/journey/today-habit-done-dark.png)
+
+![Journey habit run (dark)](2026-09-02/journey/journey-habit-run-dark.png)
+
+![Habit detail now/best (dark)](2026-09-02/journey/habit-detail-now-dark.png)
+
+![Today habit done (light)](2026-09-02/journey/today-habit-done-light.png)
+
+![Journey habit run (light)](2026-09-02/journey/journey-habit-run-light.png)
+
+![Habit detail now/best (light)](2026-09-02/journey/habit-detail-now-light.png)
