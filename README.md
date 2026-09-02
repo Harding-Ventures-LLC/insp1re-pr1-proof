@@ -20,15 +20,32 @@ Browse by day, then feature.
 
 ### Perform
 
-Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/2. Layout is `2026-09-01/perform/`. The decode workflow writes `payloads/perform-*.png.b64` into that folder. Until those binaries are in, the shots are attached on the PR.
+Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/2. Layout is `2026-09-01/perform/`. The decode workflow writes `payloads/perform-*.png.b64` into that folder.
 
-Expected files:
+![Empty (dark)](2026-09-01/perform/empty-dark.png)
 
-- `empty-dark.png`
-- `catalog-dark.png` / `catalog-light.png`
-- `detail-dark.png` / `detail-light.png`
-- `active-dark.png` / `active-light.png`
-- `player-not-started-dark.png` / `player-not-started-light.png`
-- `player-in-progress-dark.png` / `player-in-progress-light.png`
-- `player-set-logged-dark.png`
-- `signed-in-today-dark.png` / `signed-in-today-light.png`
+![Catalog (dark)](2026-09-01/perform/catalog-dark.png)
+
+![Catalog (light)](2026-09-01/perform/catalog-light.png)
+
+![Detail (dark)](2026-09-01/perform/detail-dark.png)
+
+![Detail (light)](2026-09-01/perform/detail-light.png)
+
+![Active (dark)](2026-09-01/perform/active-dark.png)
+
+![Active (light)](2026-09-01/perform/active-light.png)
+
+![Player not started (dark)](2026-09-01/perform/player-not-started-dark.png)
+
+![Player not started (light)](2026-09-01/perform/player-not-started-light.png)
+
+![Player in progress (dark)](2026-09-01/perform/player-in-progress-dark.png)
+
+![Player in progress (light)](2026-09-01/perform/player-in-progress-light.png)
+
+![Player set logged (dark)](2026-09-01/perform/player-set-logged-dark.png)
+
+![Signed in today (dark)](2026-09-01/perform/signed-in-today-dark.png)
+
+![Signed in today (light)](2026-09-01/perform/signed-in-today-light.png)
