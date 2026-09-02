@@ -1,0 +1,13 @@
+[
+  {"name":"nutrition-today-nutrition-prompt-dark.png","url":"https://litter.catbox.moe/764527.png","sha256":"c3009651c38b776ab2ef50e00373aa17d5c643eb9703c6757c1dd742d4b9c465"},
+  {"name":"nutrition-today-nutrition-prompt-light.png","url":"https://litter.catbox.moe/vxwgx0.png","sha256":"baf4b9f54dd3342702921ca8a9d8afb76f25bf7b09f5b9de0eb03a1782dd2406"},
+  {"name":"nutrition-meals-list-dark.png","url":"https://litter.catbox.moe/dzmh6a.png","sha256":"2b4c091ffd462d2f5f5f5e3dd81b86810e1b8cd82197e824a40ee0ca74230690"},
+  {"name":"nutrition-capture-chooser-dark.png","url":"https://litter.catbox.moe/fjp9jn.png","sha256":"c01200db14853cb9651f7f7d976a3b420a69133cc48f736712bd04fac8917731"},
+  {"name":"nutrition-capture-preview-dark.png","url":"https://litter.catbox.moe/g726wf.png","sha256":"c7878f51e66c9f8269280fad9d5b67a1034a72e171852e308068b88ccb0e3e71"},
+  {"name":"nutrition-meals-saved-dark.png","url":"https://litter.catbox.moe/fful55.png","sha256":"73e8aa7b39bd9736e4733b068c2c8dd028c638c73aef0903d9c4f31d52b107d0"},
+  {"name":"nutrition-meals-saved-light.png","url":"https://litter.catbox.moe/k9p6xo.png","sha256":"06cd906270cf83bdc1a902fd121f7d2b1dba77b7741601534045468d9684a836"},
+  {"name":"nutrition-parse-sheet-dark.png","url":"https://litter.catbox.moe/048wzm.png","sha256":"0f7304a044a80dfa0622f69c04fade8b3eb5493071851f3e2b8515ba1ad2112d"},
+  {"name":"nutrition-parse-sheet-light.png","url":"https://litter.catbox.moe/7qq3ok.png","sha256":"2cd0e2b4ef3b5560c2dadbe6c313cd2f96336fb2d11250dbcf3ab9532e04a537"},
+  {"name":"nutrition-parse-sheet-ready-dark.png","url":"https://litter.catbox.moe/dz29us.png","sha256":"5194bfddc9996772d1ed52312fa9f1b31ce4da357a170560c1999a09824193d8"},
+  {"name":"nutrition-parse-sheet-ready-light.png","url":"https://litter.catbox.moe/bbqpa1.png","sha256":"8165daca938e488cca0ac265520aa37a8f20c1354015276a25c94cab7be5b770"}
+]
