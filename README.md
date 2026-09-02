@@ -93,3 +93,13 @@ Pending Today habit follows the active habit. Completing it lights Today and the
 ![Journey habit run (light)](2026-09-02/journey/journey-habit-run-light.png)
 
 ![Habit detail now/best (light)](2026-09-02/journey/habit-detail-now-light.png)
+
+### Nutrition
+
+Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/5. Layout is `2026-09-02/nutrition/`.
+
+Reused the existing journey.proof session. No new Auth signups and no confirmation emails.
+
+Today follows the Steady plate prompt *Protein at breakfast*. Capture is camera or library; the log is a photo plus an optional tag. Insights live on a secondary **What we saw** sheet, not on Today. Vault still has no `OPENAI_API_KEY`, so the honest hosted parse is fail-closed. The ready sheet is that same row after a SQL-only status update.
+
+Shots are on the PR (Flutter web release, 390×844 @2x). The decoder workflow now accepts `nutrition-` payloads when they land.
