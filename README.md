@@ -20,7 +20,7 @@ Browse by day, then feature.
 
 ### Perform
 
-Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/2. Layout is `2026-09-01/perform/`. The decode workflow writes `payloads/perform-*.png.b64` into that folder.
+Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/2. Layout is `2026-09-01/perform/`.
 
 ![Empty (dark)](2026-09-01/perform/empty-dark.png)
 
@@ -49,3 +49,23 @@ Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re
 ![Signed in today (dark)](2026-09-01/perform/signed-in-today-dark.png)
 
 ![Signed in today (light)](2026-09-01/perform/signed-in-today-light.png)
+
+## 2026-09-02
+
+### Mind
+
+Hosted Flutter web chrome for PR https://github.com/Harding-Ventures-LLC/insp1re/pull/3. Layout is `2026-09-02/mind/`.
+
+![Today evening ready (dark)](2026-09-02/mind/today-evening-ready-dark.png)
+
+![Mind empty / upcoming review (dark)](2026-09-02/mind/mind-empty-dark.png)
+
+![Journal editor (dark)](2026-09-02/mind/journal-editor-dark.png)
+
+![Journal saved (dark)](2026-09-02/mind/journal-saved-dark.png)
+
+![Journal saved (light)](2026-09-02/mind/journal-saved-light.png)
+
+![Today evening saved (dark)](2026-09-02/mind/today-evening-saved-dark.png)
+
+![Today evening saved (light)](2026-09-02/mind/today-evening-saved-light.png)
